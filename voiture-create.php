@@ -1,7 +1,6 @@
 <?php
 require_once('Classe/CRUD.php');
 $crud = new CRUD;
-//$ville = $crud->select('ville', 'ville');
 
 ?>
 <!DOCTYPE html>
@@ -13,21 +12,19 @@ $crud = new CRUD;
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <form action="client-store.php" method="post">
-        <label>Nom
-            <input type="text" name="nom">
+    <form action="voiture-store.php" method="post">
+        <label>marque
+            <input type="text" name="marque">
         </label>
-        <label>Adresse
-            <input type="text" name="adresse">
-        </label>
-       
-        <label>Phone
-            <input type="text" name="phone">
+        <label>modele
+            <input type="text" name="modele">
         </label>
        
-        <label>Courriel
-            <input type="email" name="courriel">
+        <label>annee
+            <input type="text" name="annee">
         </label>
+       
+       
         <input type="submit" value="save">
     </form>
     

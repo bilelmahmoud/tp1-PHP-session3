@@ -2,6 +2,7 @@
 require_once('Classe/CRUD.php');
 $crud = new CRUD;
 $client = $crud->select('client', 'nom');
+$voiture = $crud->select('voiture' );
 
 //print_r($client);
 
@@ -19,6 +20,7 @@ $client = $crud->select('client', 'nom');
 </header>
 
 
+
 <body>
     <h2>Client</h2>
     <table>
@@ -27,6 +29,8 @@ $client = $crud->select('client', 'nom');
             <th>Adresse</th>
             <th>Phone</th>
             <th>Courriel</th>
+            <th>afficher</th>
+            <th>modifier</th>
         </tr>
 
         <?php
@@ -34,17 +38,54 @@ $client = $crud->select('client', 'nom');
         ?>
 
             <tr>
-                <td><a href="client-affiche.php?id=<?= $row['id']?>"><?= $row['nom']?></a></td>
+                <td><?= $row['nom']?></td>
                 <td><?= $row['adresse']?></td>
                 <td><?= $row['phone']?></td>
                 <td><?= $row['courriel']?></td>
+                <td><a href="client-affiche.php?id=<?= $row['id']?>">afficher</a></td>
+                <td><a href="client-edit.php?id=<?= $row['id']?>">modifier</a></td>
+               
+                
+            </tr>
+        <?php
+        }
+        ?>
+    </table>
+
+    
+    <br><br>
+    <a href="client-create.php">Ajouter</a>
+    <h2>voiture</h2>
+    <table>
+        <tr>
+            <th>marque</th>
+            <th>modele</th>
+            <th>annee</th>
+            <th>afficher</th>
+            <th>modifier</th>
+            
+           
+        </tr>
+
+        <?php
+        foreach($voiture as $row){
+        ?>
+
+            <tr>
+                <td><?= $row['marque']?></a></td>
+                <td><?= $row['modele']?></td>
+                <td><?= $row['annee']?></td>
+                <td><a href="voiture-affiche.php?id=<?= $row['id']?>">afficher</a></td>
+                <td><a href="voiture-edit.php?id=<?= $row['id']?>">modifier</a></td>
+                
+               
             </tr>
         <?php
         }
         ?>
     </table>
     <br><br>
-    <a href="client-create.php">Ajouter</a>
+    <a href="voiture-create.php">Ajouter</a>
     
 </body>
 </html>
