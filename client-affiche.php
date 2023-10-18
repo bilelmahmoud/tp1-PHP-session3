@@ -5,15 +5,12 @@ if(isset($_GET['id']) && $_GET['id']!=null ){
     $crud = new CRUD;
     $client = $crud->selectId('client', $id);
 
-    // foreach($client as $key=>$value){
-    //     $$key=$value;
-    // }
-
+    
      extract($client);
      
 
 }else{
-    header('location:client-index.php');
+    header('location:index.php');
 }
 ?>
 
@@ -23,6 +20,8 @@ if(isset($_GET['id']) && $_GET['id']!=null ){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>client</title>
+    <link rel="stylesheet" href="css/style.css">
+    
 </head>
 <body>
     <h1>Client</h1>
@@ -30,8 +29,8 @@ if(isset($_GET['id']) && $_GET['id']!=null ){
     <p><strong>Adresse: </strong><?= $adresse; ?></p>
     <p><strong>Phone: </strong><?= $phone; ?></p>
     <p><strong>Courriel: </strong><?= $courriel; ?></p>
-    <a href="client-edit.php?id=<?= $id; ?>">Edit</a>
-    <form action="client-delete.php" method="post">
+ 
+    <form  action="client-delete.php" method="post">
         <input type="hidden" name="id" value="<?= $id; ?>">
         <br>
         <input type="submit" value="Delete">

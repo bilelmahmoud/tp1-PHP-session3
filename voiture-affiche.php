@@ -5,16 +5,12 @@ if(isset($_GET['id']) && $_GET['id']!=null ){
     $crud = new CRUD;
     $voiture = $crud->selectId('voiture', $id);
 
-    // foreach($client as $key=>$value){
-    //     $$key=$value;
-    // }
-
      extract($voiture);
      
    
 
 }else{
-    header('location:client-index.php');
+    header('location:index.php');
 }
 ?>
 
@@ -24,14 +20,15 @@ if(isset($_GET['id']) && $_GET['id']!=null ){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>voiture</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <h1>voiture</h1>
     <p><strong>marque: </strong><?= $marque; ?></p>
     <p><strong>modele: </strong><?= $modele; ?></p>
     <p><strong>annee: </strong><?= $annee; ?></p>
-    <a href="voiture-edit.php?id=<?= $id; ?>">Edit</a>
-    <form action="voiture-delete.php" method="post">
+   
+    <form  action="voiture-delete.php" method="post">
         <input type="hidden" name="id" value="<?= $id; ?>">
         <br>
         <input type="submit" value="Delete">

@@ -1,9 +1,9 @@
-body{
+body {
     background-color: gainsboro;
-
+    font-family: Arial, sans-serif;
 }
 
-header{
+header {
     background-color: black;
     text-align: center;
     color: beige;
@@ -13,11 +13,12 @@ header{
 table {
     border-collapse: collapse;
     width: 100%;
+    margin-top: 20px;
 }
 
 th, td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 10px;
     text-align: left;
 }
 
@@ -35,11 +36,60 @@ tr:nth-child(odd) {
 
 a {
     text-decoration: none;
-    color: #007BFF; /* Couleur du lien pour les noms */
+    color: #007BFF;
 }
 
 a:hover {
     text-decoration: underline;
-    color: #0056b3; /* Couleur du lien au survol */
+    color: #0056b3;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+form label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+p, h1{
+    text-align: center;
+    
+}
+
+p{
+    font-size: 24px;
+}

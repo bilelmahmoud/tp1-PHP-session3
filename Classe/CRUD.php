@@ -2,9 +2,13 @@
 
 class CRUD extends PDO {
 
-    public function __construct(){
+    /*  public function __construct(){
         parent::__construct('mysql:host=localhost; dbname=rent; port=3306; charset=utf8', 'root', '');
     }
+  */
+ public function __construct(){
+    parent::__construct('mysql:host=localhost; dbname=e2395390; port=3306; charset=utf8', 'e2395390', 'bvyB6iQewU3zEcjA4Jm4');
+} 
 
     public function select($table, $field='id', $order='ASC'){
         $sql="SELECT * FROM $table ORDER BY $field $order";
@@ -19,7 +23,7 @@ class CRUD extends PDO {
         if($count == 1){
             return $stmt->fetch();
         }else{
-            header('location:client-index.php');
+            header('location:index.php');
         }  
     }
 
@@ -45,7 +49,7 @@ class CRUD extends PDO {
         $stmt = $this->prepare($sql);
         $stmt->bindValue(":$field", $value);
         $stmt->execute();
-        header('location:client-index.php');
+        header('location:index.php');
     }
 
     public function update($table, $data, $field='id'){
@@ -67,6 +71,9 @@ class CRUD extends PDO {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
 
     }
+
+
+    
 
 
 

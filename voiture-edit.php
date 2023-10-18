@@ -6,7 +6,7 @@ if(isset($_GET['id']) && $_GET['id']!=null ){
     $voiture = $crud->selectId('voiture', $id);
     extract($voiture);
 }else{
-    header('location:client-index.php');
+    header('location:index.php');
 }
 ?>
 <!DOCTYPE html>
@@ -15,12 +15,7 @@ if(isset($_GET['id']) && $_GET['id']!=null ){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ajouter une voiture</title>
-    <style>
-        input{
-            display: block;
-            margin: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <h1>voiture Edit</h1>

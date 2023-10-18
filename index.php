@@ -14,6 +14,7 @@ $voiture = $crud->select('voiture' );
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste de client</title>
     <link rel="stylesheet" href="css/style.css">
+  
 </head>
 <header>
     <h1>LOCATION DE VOITURE</h1>
@@ -31,6 +32,7 @@ $voiture = $crud->select('voiture' );
             <th>Courriel</th>
             <th>afficher</th>
             <th>modifier</th>
+            
         </tr>
 
         <?php

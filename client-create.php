@@ -1,7 +1,6 @@
 <?php
 require_once('Classe/CRUD.php');
 $crud = new CRUD;
-//$ville = $crud->select('ville', 'ville');
 
 ?>
 <!DOCTYPE html>
