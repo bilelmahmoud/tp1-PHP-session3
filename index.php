@@ -1,93 +1,57 @@
 <?php
-require_once('Classe/CRUD.php');
-$crud = new CRUD;
-$client = $crud->select('client', 'nom');
-$voiture = $crud->select('voiture' );
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
-//print_r($client);
+define('PATH_DIR', 'http://localhost/PHP/tp1-PHP-session3/');
+require_once('controller/Controller.php');
+require_once('library/RequirePage.php');
+require_once __DIR__.'/vendor/autoload.php';
+require_once('library/Twig.php');
 
+
+$url = isset($_GET["url"]) ? explode ('/', ltrim($_GET["url"], '/')) : '/';
+
+//print_r($url);
+
+// echo $url[0]; // controller
+// echo $url[1]; // method
+// echo $url[2]; // value
+
+
+if($url == '/'){
+    require_once('controller/ControllerHome.php');
+    $controller = new ControllerHome;
+    echo $controller->index(); 
+}else{
+    //controller
+    $requestURL = $url[0];
+    $requestURL = ucfirst($requestURL);
+    $controllerPath = __DIR__."/controller/Controller".$requestURL.".php";
+
+    if(file_exists($controllerPath)){
+        require_once( $controllerPath);
+        $controllerName = 'Controller'.$requestURL;
+        $controller = new $controllerName;
+        if(isset($url[1])){
+            $method = $url[1];
+            if(isset($url[2])){
+                echo $controller->$method($url[2]);
+            }else{
+                echo $controller->$method();
+            }
+        }else{
+            echo $controller->index();
+        }
+        
+
+    }else{
+        require_once('controller/ControllerHome.php');
+        $controller = new ControllerHome;
+        echo $controller->error('404'); 
+    }
+}
+
+
+// https://packagist.org/packages/rakit/validation
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste de client</title>
-    <link rel="stylesheet" href="css/style.css">
-  
-</head>
-<header>
-    <h1>LOCATION DE VOITURE</h1>
-</header>
-
-
-
-<body>
-    <h2>Client</h2>
-    <table>
-        <tr>
-            <th>Nom</th>
-            <th>Adresse</th>
-            <th>Phone</th>
-            <th>Courriel</th>
-            <th>afficher</th>
-            <th>modifier</th>
-            
-        </tr>
-
-        <?php
-        foreach($client as $row){
-        ?>
-
-            <tr>
-                <td><?= $row['nom']?></td>
-                <td><?= $row['adresse']?></td>
-                <td><?= $row['phone']?></td>
-                <td><?= $row['courriel']?></td>
-                <td><a href="client-affiche.php?id=<?= $row['id']?>">afficher</a></td>
-                <td><a href="client-edit.php?id=<?= $row['id']?>">modifier</a></td>
-               
-                
-            </tr>
-        <?php
-        }
-        ?>
-    </table>
-
-    
-    <br><br>
-    <a href="client-create.php">Ajouter</a>
-    <h2>voiture</h2>
-    <table>
-        <tr>
-            <th>marque</th>
-            <th>modele</th>
-            <th>annee</th>
-            <th>afficher</th>
-            <th>modifier</th>
-            
-           
-        </tr>
-
-        <?php
-        foreach($voiture as $row){
-        ?>
-
-            <tr>
-                <td><?= $row['marque']?></a></td>
-                <td><?= $row['modele']?></td>
-                <td><?= $row['annee']?></td>
-                <td><a href="voiture-affiche.php?id=<?= $row['id']?>">afficher</a></td>
-                <td><a href="voiture-edit.php?id=<?= $row['id']?>">modifier</a></td>
-                
-               
-            </tr>
-        <?php
-        }
-        ?>
-    </table>
-    <br><br>
-    <a href="voiture-create.php">Ajouter</a>
-    
-</body>
-</html>
