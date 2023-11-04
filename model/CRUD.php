@@ -1,10 +1,14 @@
 <?php
 
 abstract class CRUD extends PDO {
-
+    /* 
     public function __construct(){
         parent::__construct('mysql:host=localhost; dbname=rent; port=3306; charset=utf8', 'root', '');
-    }
+    } */
+
+     public function __construct(){
+    parent::__construct('mysql:host=localhost; dbname=e2395390; port=3306; charset=utf8', 'e2395390', 'bvyB6iQewU3zEcjA4Jm4');
+    }  
 
     public function select($field='id', $order='ASC'){
         $sql="SELECT * FROM $this->table ORDER BY $field $order";

@@ -4,7 +4,7 @@
         
 
         <form action="{{path}}voiture/store" method="post">
-            <!-- <span class="text-danger">{{ errors | raw }}</span> -->
+   
             <label>marque
                 <input type="text" name="marque">
             </label>
@@ -22,7 +22,7 @@
                 <select name="categorie_id">
                     <option value="">Selectionner une categorie</option>
                    {%  for categorie in categories %}
-                        <option value="{{ categorie.id}}">{{ categorie.nom }}</option>
+                        <option value="{{ categorie.id}}"> {{ categorie.id }} {{ categorie.nom }}</option>
                    {% endfor %}
                 </select>
 

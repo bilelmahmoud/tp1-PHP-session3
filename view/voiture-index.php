@@ -15,13 +15,13 @@
                     <td><a href="{{path}}voiture/show/{{voiture.id}}">{{voiture.marque}}</a></td>
                     <td>{{ voiture.modele }}</td>
                     <td>{{ voiture.annee }}</td>
-                    <td>{{ categorie }}</td>
+                    <td>{{ voiture.categorie_id }}</td>
                     <!-- <td>{{ categorie.nom }}</td> -->
                    
                     <td>
                         <form action="{{path}}voiture/destroy" method="post">
                             <input type="hidden" name="id" value="{{voiture.id}}">
-                            <input type="submit" value="Delete" class="btn-danger">
+                            <input type="submit" value="Delete">
                         </form>
                     </td>
                 </tr>

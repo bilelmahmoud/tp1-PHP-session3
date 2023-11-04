@@ -7,9 +7,14 @@ RequirePage::model('Categorie');
 
 class ControllerVoiture extends controller {
     public function index(){
-        print_r($select);
+       
         $voiture = new Voiture;
+       /*  $selectCategorie = $voiture->voitureCategorie(); */
         $select = $voiture->select();
+        
+       /*  $categorie = new Categorie;
+        $selectCategorie = $categorie->selectId($select['categorie_id']);
+     */
         return Twig::render('voiture-index.php', ['voitures'=>$select]);
         
        
@@ -19,29 +24,22 @@ class ControllerVoiture extends controller {
      public function create(){
 
         $categorie = new Categorie;
-        $selectCategorie = $categorie->select('nom');
-        return Twig::render('voiture-create.php', ['categories'=>$selectCategorie]);
+        $select = $categorie->select();
+        return Twig::render('voiture-create.php', ['categories'=>$select]);
         
     } 
 
     public function store(){
         print_r($_POST);
- 
-       
-        
+                
         $voiture = new Voiture;
         $insert = $voiture->insert($_POST);
-        $selectId = $voiture->selectId($insert);
-        /* print_r($insert); */
+     
         print_r($selectId); 
 
          RequirePage::url('voiture/show/'.$insert);  
 
-        $categorie = new Categorie;
-        $selectCategorie = $categorie->selectId($selectId['categorie_id']);
-        RequirePage::url('voiture/show/'.$insert); 
-        return Twig::render('voiture-show.php', ['voiture'=>$selectId, 'categorie'=>  $selectCategorie['nom']]);
-
+       
 
     }
 
@@ -52,20 +50,20 @@ class ControllerVoiture extends controller {
         $selectId = $voiture->selectId($id);
         $categorie = new Categorie;
         $selectCategorie = $categorie->selectId($selectId['categorie_id']);
-        return Twig::render('voiture-show.php', ['voiture'=>$selectId, 'categorie'=>  $selectCategorie['nom']]);
+        return Twig::render('voiture-show.php', ['voiture'=>$selectId, 'categories'=>$selectCategorie['nom']]);
     }
 
     public function edit($id){
         $voiture = new Voiture;
         $selectId = $voiture->selectId($id);
         $categorie = new Categorie;
-        $selectCategorie = $categorie->select('nom');
+        $selectCategories = $categorie->select();
         return Twig::render('voiture-edit.php', ['voiture'=>$selectId, 
-                                'categorie'=>$selectCategorie]); 
+                                'categories'=>$selectCategories]); 
        
     }
     public function update(){
-
+        print_r($_POST);
         $voiture = new Voiture;
         $update =  $voiture->update($_POST);
 
@@ -74,11 +72,12 @@ class ControllerVoiture extends controller {
     }
 
     Public function destroy(){
-        //print_r($_POST);
+        
         $voiture = new Voiture;
         $update = $voiture->delete($_POST['id']);
         RequirePage::url('voiture/index');
     }
+    
         
     
 }

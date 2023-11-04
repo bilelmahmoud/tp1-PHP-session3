@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 18 oct. 2023 à 17:22
+-- Généré le : ven. 03 nov. 2023 à 23:41
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `rent`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `categorie`
+--
+
+CREATE TABLE `categorie` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `categorie`
+--
+
+INSERT INTO `categorie` (`id`, `nom`) VALUES
+(1, 'Compacte'),
+(2, 'SUV'),
+(3, 'Berline'),
+(4, 'Hatchback'),
+(5, 'Camionnette');
 
 -- --------------------------------------------------------
 
@@ -42,7 +64,7 @@ CREATE TABLE `client` (
 INSERT INTO `client` (`id`, `nom`, `adresse`, `phone`, `courriel`) VALUES
 (1, 'Mohamed bilel Mahmoud', '2502 rue Nicolet', '5149535756', 'bilelbenmahmoud777@gmail.com'),
 (8, 'malek ', '2110 Rue Liébert', '5147882233', 'malek@gmail.com'),
-(10, 'cristiano', 'ronald', '5148996666', 'cristiano@gmail.com');
+(10, 'cristiano ronaldo', '2209 ', '5148996666', 'cristiano@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -79,21 +101,28 @@ CREATE TABLE `voiture` (
   `id` int(11) NOT NULL,
   `marque` varchar(45) NOT NULL,
   `modele` varchar(45) NOT NULL,
-  `annee` varchar(45) NOT NULL
+  `annee` varchar(45) NOT NULL,
+  `categorie_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `voiture`
 --
 
-INSERT INTO `voiture` (`id`, `marque`, `modele`, `annee`) VALUES
-(7, 'chevrolet', 'cobalt', '2008'),
-(8, 'kia ', 'rio', '2014'),
-(9, 'hyndai', 'accent', '2020');
+INSERT INTO `voiture` (`id`, `marque`, `modele`, `annee`, `categorie_id`) VALUES
+(15, 'hundai', 'elantra', '2023', 3),
+(16, 'kia ', 'rio', '2019', 3),
+(66, 'hyundai', 'acc', '2020', 5);
 
 --
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `client`
@@ -120,17 +149,24 @@ ALTER TABLE `location_voiture`
 -- Index pour la table `voiture`
 --
 ALTER TABLE `voiture`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_voiture_categorie` (`categorie_id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
+-- AUTO_INCREMENT pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `location`
@@ -142,7 +178,7 @@ ALTER TABLE `location`
 -- AUTO_INCREMENT pour la table `voiture`
 --
 ALTER TABLE `voiture`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- Contraintes pour les tables déchargées
@@ -160,6 +196,12 @@ ALTER TABLE `location`
 ALTER TABLE `location_voiture`
   ADD CONSTRAINT `fk_location_has_voiture_location1` FOREIGN KEY (`location_id`) REFERENCES `location` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_location_has_voiture_voiture1` FOREIGN KEY (`voiture_id`) REFERENCES `voiture` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `voiture`
+--
+ALTER TABLE `voiture`
+  ADD CONSTRAINT `fk_voiture_categorie` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

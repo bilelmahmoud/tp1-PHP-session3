@@ -4,17 +4,21 @@ class Voiture extends CRUD {
 
     protected $table = 'voiture';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'marque', 'model',"annee" , 'categorie_id'];
+    protected $fillable = ['id', 'marque', 'modele','annee' , 'categorie_id'];
 
 
-    /* protected $fillable = ['id', 'nom', 'adresse', 'phone', 'code_postal', 'courriel', 'ville_id']; */
 
-   /*  public function clientVille(){
-        $sql = "SELECT * FROM $this->table INNER JOIN ville ON ville.id = ville_id";
+        public function selectCategorie(){
+        $sql = "SELECT * FROM voiture
+         INNER JOIN categorie ON categorie_id = categorie.id";
         $stmt = $this->query($sql);
-        $clientVille = $stmt->fetchAll();
-        return $clientVille;
-    } */
+        $voitureCategorie = $stmt->fetchAll();
+        return $voitureCategorie;
+    }  
+
+
+    
+    
 }
 
 ?>
