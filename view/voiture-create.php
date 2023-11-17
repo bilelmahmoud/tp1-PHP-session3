@@ -3,7 +3,7 @@
     <div class="container">
         
 
-        <form action="{{path}}voiture/store" method="post">
+        <form action="{{path}}voiture/store" method="post" enctype="multipart/form-data">
    
             <label>marque
                 <input type="text" name="marque">
@@ -26,8 +26,16 @@
                    {% endfor %}
                 </select>
 
-            </label>    
-           
+            </label>
+
+            <label> photo 
+<!-- 
+            <input type="file" name="fileToUpload" id="fileToUpload"> -->
+            <input type="file" name="photo" id="fileToUpload">
+            <input type="hidden" name="submit" value="upload photo">
+            
+            
+            </label>
            
         
             <input type="submit" value="save" class="btn">
