@@ -29,8 +29,8 @@
             </label>
 
             <label> photo 
-<!-- 
-            <input type="file" name="fileToUpload" id="fileToUpload"> -->
+
+         
             <input type="file" name="photo" id="fileToUpload">
             <input type="hidden" name="submit" value="upload photo">
             

@@ -16,6 +16,7 @@
                 <li><a href="{{path}}voiture/create">Voiture Create</a></li>
                 {% if session.privilege == 2 %}
                     <li><a href="{{path}}user">Users</a></li>
+                    <li><a href="{{path}}journal">journal</a></li>
                     {% endif %}
                
                 <li><a href="{{path}}login/logout">Logout</a></li>

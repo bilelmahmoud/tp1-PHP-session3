@@ -32,14 +32,7 @@ class ControllerVoiture extends controller {
     } 
 
     public function store(){
-       /*  print_r($_POST);
-                
-        $voiture = new Voiture;
-        $insert = $voiture->insert($_POST);
-     
-        print_r($selectId); 
-
-         RequirePage::url('voiture/show/'.$insert);   */
+    
          $voiture = new Voiture;
 
          if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
@@ -68,18 +61,7 @@ class ControllerVoiture extends controller {
         unset($_POST['submit']);
         $insert = $voiture->insert($_POST);
         RequirePage::url('voiture/show/'.$insert); 
-
-
-       /*  $_POST['photo'] = $_FILES['photo']['name']; */
-           
-/*             $voiture = new Voiture; */
-
-
-           
-         
-
-
-       
+                
 
     }
 

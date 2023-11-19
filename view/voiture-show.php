@@ -9,6 +9,9 @@
         <p><strong>annee:</strong> {{ voiture.annee }}</p>
         <p><strong>categorie:</strong> {{ categories}}</p>
         <a href="{{path}}voiture/edit/{{ voiture.id }}" class="btn-modif">Modifier</a>
+        <img src=" /PHP/tp1-PHP-session3/uploads/img/{{ voiture.photo }}" alt="">
+       
+      
     </div>
 </body>
 </html>

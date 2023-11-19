@@ -144,3 +144,12 @@ nav a:hover {
     text-decoration: none;
     margin-left: 40rem;
 }
+
+img{
+    border: solid 1px black;
+    margin: 2rem;
+    margin-left: 17rem;
+    width:60%;
+    height: 40%;
+   
+}
