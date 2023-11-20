@@ -27,6 +27,10 @@ class ControllerVoiture extends controller {
     } 
 
     public function store() {
+
+        $categorie = new Categorie;
+        $select = $categorie->select();
+
         if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
             $target_dir = 'uploads/'; 
             $target_file = $target_dir . basename($_FILES['photo']['name']);
@@ -42,11 +46,11 @@ class ControllerVoiture extends controller {
                 RequirePage::url('voiture/show/'.$insert);
             } else {
                 
-                return Twig::render('voiture-create.php', ['errors' => 'Error', 'voiture' => $_POST]);
+                return Twig::render('voiture-create.php', ['errors' => 'Error', 'voiture' => $_POST, 'categories'=>$select]);
             }
         } else {
            
-            return Twig::render('voiture-create.php', ['errors' => 'Sélectionnez un fichier', 'voiture' => $_POST]);
+            return Twig::render('voiture-create.php', ['errors' => 'Sélectionnez un fichier', 'voiture' => $_POST, 'categories'=>$select]);
         }
     }
     public function show($id){
