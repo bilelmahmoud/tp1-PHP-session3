@@ -30,12 +30,6 @@
                 </select>
 
  
-                <!-- <select name="categorie_id">
-                    <option value="">Selectionner une ville</option>
-                    {%  for categorie in categories%}
-                        <option value="{{ categorie.id}}" {% if categorie.id == voiture.categorie_id %} selected {% endif %}>{{ categorie.nom }}</option>
-                    {% endfor %}
-                </select>  -->
 
             </label>    
            

@@ -153,3 +153,11 @@ img{
     height: 40%;
    
 }
+
+.username{
+   display: flex;
+   color: #2E294E;
+   text-align: end;
+   justify-content: end;
+
+}

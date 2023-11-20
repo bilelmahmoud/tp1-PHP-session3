@@ -5,12 +5,13 @@ session_start();
 // error_reporting(E_ALL);
 
 define('PATH_DIR', 'http://localhost/PHP/tp1-PHP-session3/');
+//define('PATH_DIR', 'https://e2395390.webdev.cmaisonneuve.qc.ca/tp1-PHP-session3/');
 require_once('controller/Controller.php');
 require_once('library/RequirePage.php');
 require_once __DIR__.'/vendor/autoload.php';
 require_once('library/Twig.php');
 require_once('library/CheckSession.php');
-
+require_once('model/Journal.php');
 
 $url = isset($_GET["url"]) ? explode ('/', ltrim($_GET["url"], '/')) : '/';
 
@@ -19,6 +20,19 @@ $url = isset($_GET["url"]) ? explode ('/', ltrim($_GET["url"], '/')) : '/';
 // echo $url[0]; // controller
 // echo $url[1]; // method
 // echo $url[2]; // value
+
+$journal = new Journal;
+
+$log = array(
+    'adresse_ip' => $_SERVER['REMOTE_ADDR'],
+    'date' =>  (new DateTime('now', new DateTimeZone('America/Toronto')))->format('Y-m-d H:i:s'),
+    'nom' => (isset($_SESSION['username'])) ? $_SESSION['username'] : 'guest',
+    'page_visitee' => $_SERVER['REQUEST_URI']
+);
+
+
+
+$data = $journal->insert($log);
 
 
 if($url == '/'){

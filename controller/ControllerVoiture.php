@@ -10,11 +10,6 @@ class ControllerVoiture extends controller {
        
         $voiture = new Voiture;
         $selectCategorie = $voiture->selectCategorie();
-      /*   $select = $voiture->select(); */
-        
-       /*  $categorie = new Categorie;
-        $selectCategorie = $categorie->selectId($select['categorie_id']);
-     */
         return Twig::render('voiture-index.php', ['voitures'=>$selectCategorie]);
         
        
@@ -31,41 +26,29 @@ class ControllerVoiture extends controller {
         RequirePage::url('login'); 
     } 
 
-    public function store(){
-    
-         $voiture = new Voiture;
-
-         if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
-            $target_dir = "/PHP/tp1-PHP-session3/uploads/img/";
-            $target_file = $_SERVER['DOCUMENT_ROOT'].$target_dir .$_FILES['photo']["name"];
-            
-            $check = getimagesize($_FILES['photo']["tmp_name"]);
-            
-            if ($check !== false) {
-               
-                move_uploaded_file($_FILES['photo']["tmp_name"], $target_file);
-        
-               
-                $_POST['photo'] = $_FILES['photo']["name"];
-                           
-             
-            } else {
-                echo "Le fichier n'est pas une image valide.";
-                die();
-               
-            }
-
-                      
-        }
-       /*  var_dump([$_POST]); */
-        unset($_POST['submit']);
-        $insert = $voiture->insert($_POST);
-        RequirePage::url('voiture/show/'.$insert); 
+    public function store() {
+        if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+            $target_dir = 'uploads/'; 
+            $target_file = $target_dir . basename($_FILES['photo']['name']);
                 
-
+            if (move_uploaded_file($_FILES['photo']['tmp_name'], $target_file)) {
+              
+                $_POST['photo'] = $_FILES['photo']['name'];
+             
+                $voiture = new Voiture;
+                $insert = $voiture->insert($_POST);
+    
+               
+                RequirePage::url('voiture/show/'.$insert);
+            } else {
+                
+                return Twig::render('voiture-create.php', ['errors' => 'Error', 'voiture' => $_POST]);
+            }
+        } else {
+           
+            return Twig::render('voiture-create.php', ['errors' => 'Sélectionnez un fichier', 'voiture' => $_POST]);
+        }
     }
-
-
     public function show($id){
         
         $voiture = new Voiture;

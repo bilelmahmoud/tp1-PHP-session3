@@ -8,6 +8,7 @@
                 <th>modele</th>
                 <th>annee</th>
                 <th>categorie</th>
+               
                 
                 
                
@@ -18,7 +19,6 @@
                     <td><a href="{{path}}voiture/show/{{voiture.id}}">{{voiture.marque}}</a></td>
                     <td>{{ voiture.modele }}</td>
                     <td>{{ voiture.annee }}</td>
-                   <!--  <td>{{ voiture.categorie_id }}</td> -->
                      <td>{{ voiture.nom }}</td> 
                     
                      

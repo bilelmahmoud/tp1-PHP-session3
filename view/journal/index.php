@@ -11,12 +11,16 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            {% for key, value in selectJournal %}
-                {% if key is odd %}
-                    <td>{{ value }}</td>
-                {% endif %}
+       
+            {% for  selectJournal in selectJournals %}
+        <tr>    
+            <td>{{ selectJournal.id }}</td>
+            <td>{{ selectJournal.adresse_ip }}</td>
+            <td>{{ selectJournal.date }}</td>
+            <td>{{ selectJournal.nom}}</td>
+            <td>{{ selectJournal.page_visitee}}</td>
+        </tr>       
             {% endfor %}
-        </tr>
+       
     </tbody>
 </table>
